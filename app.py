@@ -8,7 +8,7 @@ db = SQLAlchemy(app)
 
 class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    priority = db.Column(db.String(10), nullable=False)
+    priority = db.Column(db.Integer(), nullable=False)
     content = db.Column(db.String(200), nullable=False)
     completed = db.Column(db.Integer, default=0)
     date_created = db.Column(db.DateTime, default=datetime.utcnow)
@@ -31,7 +31,7 @@ def index():
             return 'There was an issue adding your task.'
 
     else:
-        tasks = Todo.query.order_by(Todo.date_created).all()
+        tasks = Todo.query.order_by(Todo.priority).all()
         return render_template('index.html', tasks=tasks)
 
 @app.route('/delete/<int:id>')
