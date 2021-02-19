@@ -41,3 +41,7 @@ td {
 #content {
     width: 60%;
 }
+
+.row {
+    margin-top: 10px;
+}
